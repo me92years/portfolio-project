@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "secrets.token.access.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'secrets.token.access.expiration'"
+  },
+  {
+    "name": "secrets.token.refresh.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'secrets.token.refresh.expiration'"
+  },
+  {
+    "name": "secrets.cookie.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'secrets.cookie.expiration'"
+  },
+  {
+    "name": "secrets.token.secret.key",
+    "type": "java.lang.String",
+    "description": "A description for 'secrets.token.secret.key'"
+  },
+  {
+    "name": "secrets.cookie.domain",
+    "type": "java.lang.String",
+    "description": "A description for 'secrets.cookie.domain'"
+  },
+  {
+    "name": "secrets.cookie.path",
+    "type": "java.lang.String",
+    "description": "A description for 'secrets.cookie.path'"
+  }
+]}
