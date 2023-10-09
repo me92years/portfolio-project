@@ -6,8 +6,8 @@ interface PortFolioTopProps {
 }
 
 const PortfolioTop = React.forwardRef(
-  (props: PortFolioTopProps, ref: React.Ref<HTMLElement>) => {
-    props;
+  (_props: PortFolioTopProps, ref: React.Ref<HTMLElement>) => {
+
     return (
       <Main ref={ref}>
         test

@@ -6,12 +6,25 @@
   color: rgb(255, 0, 128);
 }
 
+.homeLogo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-left: 1rem;
+}
+
+.homeLink {
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  color: rgb(255, 0, 128);
+}
+
 @media (any-hover: hover) {
 
   .homeLogo:Hover,
   .homeLi:hover {
     scale: 1.1;
-  }  
+  }
 
   .homeLogo:Hover::before,
   .homeLi:Hover::before {
@@ -30,6 +43,7 @@
   0% {
     width: 0;
   }
+
   100% {
     width: 100%;
   }

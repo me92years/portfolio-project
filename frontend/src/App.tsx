@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { styled } from '@stitches/react'
 import PortfolioRoutes from './routes/PortfolioRoutes';
 import MediaDBRoutes from './routes/MediaDBRoutes';
+import Login from './routes/components/Login';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Routes>
         <Route path='/*' element={<PortfolioRoutes />} />
         <Route path='/mediadb/*' element={<MediaDBRoutes />} />
-        <Route path='/login' />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </Container>
   );

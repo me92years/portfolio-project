@@ -6,8 +6,8 @@ interface PortfolioAboutProps {
 };
 
 const PortfolioAbout = React.forwardRef(
-  (props: PortfolioAboutProps, ref: React.Ref<HTMLElement>) => {
-    props;
+  (_props: PortfolioAboutProps, ref: React.Ref<HTMLElement>) => {
+
     return (
       <Main ref={ref}>
         about
