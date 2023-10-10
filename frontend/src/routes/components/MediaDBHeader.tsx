@@ -16,7 +16,7 @@ interface MediaDBHeaderProps {
 
 const MediaDBHeader = React.forwardRef(
   ({ authInfo, isAuthLoading, events }: MediaDBHeaderProps, ref: React.Ref<HTMLElement>) => {
-
+    console.log(authInfo);
     return (
       <Header ref={ref}>
         <Nav>
