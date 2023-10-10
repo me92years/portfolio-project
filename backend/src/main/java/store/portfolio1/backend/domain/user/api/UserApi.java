@@ -32,20 +32,23 @@ public class UserApi {
   @PostMapping("/users/login")
   public ResponseEntity<Long> login(HttpServletResponse response,
       @RequestBody LoginRequest loginRequest) {
+    log.info("로그인을 시작합니다.");
+    log.info(loginRequest);
     try {
       UsernamePasswordAuthenticationToken loginToken = loginRequest.getLoginToken();
       Authentication authResult = authenticationManager.authenticate(loginToken);
       AuthDTO authDTO = (AuthDTO) authResult.getPrincipal();
-
+      log.info(authDTO);
       String username = authDTO.getUsername();
       Social social = authDTO.getSocial();
       Role role = authDTO.getRole();
-
+      log.info("토큰을 발행합니다.");
       String accessToken = authService.generateAccessToken(username, social, role);
       String refreshToken = authService.generateRefreshToken(username, social, role);
+      log.info("리프레시 토큰을 업데이트합니다.");
       authService.updateRefreshToken(username, social, refreshToken);
-
       String authorization = authService.generateAuthorization(username, social, accessToken);
+      log.info("토큰을 반환합니다.");
       response.addHeader(HttpHeaders.SET_COOKIE, authorization);
       return ResponseEntity.ok(1L);
     } catch (Exception e) {

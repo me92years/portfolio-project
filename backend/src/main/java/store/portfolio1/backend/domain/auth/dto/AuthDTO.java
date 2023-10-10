@@ -4,11 +4,13 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import lombok.Getter;
+import lombok.ToString;
 import store.portfolio1.backend.domain.profile.Profile;
 import store.portfolio1.backend.domain.user.Role;
 import store.portfolio1.backend.domain.user.Social;
 
 @Getter
+@ToString
 public class AuthDTO extends User {
 
   /**
