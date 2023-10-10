@@ -10,7 +10,7 @@ interface MediaDBHomeProps {
 
 const MediaDBHome = () => {
   const { events } = useOutletContext() as MediaDBHomeProps;
-
+  events;
   return (
     <Main>
       <SearchSection>
@@ -34,7 +34,7 @@ const MediaDBHome = () => {
         </Article>
       </SearchSection>
       <TrendingSection>
-        
+
       </TrendingSection>
     </Main>
   );
