@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { loginApi } from "../features/login/loginApi";
+import { api } from "./api";
 import loginReducer from '../features/login/loginSlice';
 
 export const store = configureStore({
   reducer: {
     'login': loginReducer,
-    [loginApi.reducerPath]: loginApi.reducer,
+    [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(loginApi.middleware);
+    return getDefaultMiddleware().concat(api.middleware);
   },
 });
 

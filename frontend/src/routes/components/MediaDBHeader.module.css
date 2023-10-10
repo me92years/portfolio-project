@@ -19,6 +19,12 @@
   color: rgb(255, 0, 128);
 }
 
+.homeButton {
+  cursor: pointer;
+  position: relative;
+  color: rgb(255, 0, 128);
+}
+
 @media (any-hover: hover) {
 
   .homeLogo:Hover,

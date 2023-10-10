@@ -1,12 +1,19 @@
-import * as React from 'react';
 import * as Form from '@radix-ui/react-form';
 import { styled } from '@stitches/react';
+import { useOutletContext } from 'react-router-dom';
 
-const MediaDBHome = React.forwardRef(() => {
+interface MediaDBHomeProps {
+  events: {
+
+  }
+}
+
+const MediaDBHome = () => {
+  const { events } = useOutletContext() as MediaDBHomeProps;
 
   return (
     <Main>
-      <Section>
+      <SearchSection>
         <Article>
           <Title>환영합니다!</Title>
         </Article>
@@ -25,14 +32,18 @@ const MediaDBHome = React.forwardRef(() => {
             </FormRoot>
           </Form.Root>
         </Article>
-      </Section>
+      </SearchSection>
+      <TrendingSection>
+        
+      </TrendingSection>
     </Main>
   );
-});
+};
 
 const Main = styled('main', {
   display: 'flex',
-  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
   position: 'relative',
   width: '100%',
   height: 'auto',
@@ -45,7 +56,7 @@ const Main = styled('main', {
   }
 });
 
-const Section = styled('section', {
+const SearchSection = styled('section', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -85,6 +96,16 @@ const Search = styled('input', {
 
 const Submit = styled('button', {
   fontSize: '1.1rem',
+});
+
+const TrendingSection = styled('section', {
+  position: 'relative',
+  top: '10rem',
+  width: 'calc(1440px - 2rem)',
+  height: '20rem',
+  padding: '2rem',
+  borderRadius: '1rem',
+  backgroundColor: '#ffffff',
 });
 
 export default MediaDBHome;

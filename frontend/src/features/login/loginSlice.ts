@@ -1,11 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-
-export interface LoginState {
-  username: string;
-  password: string;
-  social: string;
-};
+import { LoginState } from '../../app/states';
 
 const initialState: LoginState = {
   username: '',

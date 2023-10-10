@@ -1,14 +1,21 @@
 import * as React from 'react';
 import { styled } from '@stitches/react';
 import { Link } from 'react-router-dom';
+import { UserState } from '../../app/states';
 import styles from './MediaDBHeader.module.css'
+import { InlineLoading } from './Loading';
 
 interface MediaDBHeaderProps {
-
+  authInfo: UserState | undefined,
+  isAuthLoading: boolean,
+  events: {
+    onClickLogin: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    onClickLogout: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  };
 };
 
 const MediaDBHeader = React.forwardRef(
-  (_props: MediaDBHeaderProps, ref: React.Ref<HTMLElement>) => {
+  ({ authInfo, isAuthLoading, events }: MediaDBHeaderProps, ref: React.Ref<HTMLElement>) => {
 
     return (
       <Header ref={ref}>
@@ -29,7 +36,27 @@ const MediaDBHeader = React.forwardRef(
               <Link className={styles.homeLink} to='/'>이전으로</Link>
             </Li>
             <Li className={styles.homeLi}>
-              <Link className={styles.homeLink} to='/login'>로그인</Link>
+              {
+                isAuthLoading
+                  ? <InlineLoading size={'100%'} />
+                  : authInfo
+                    ? (
+                        <Button
+                          className={styles.homeButton}
+                          onClick={events.onClickLogout}
+                        >
+                          로그아웃
+                        </Button>
+                      )
+                    : (
+                        <Button
+                          className={styles.homeButton}
+                          onClick={events.onClickLogin}
+                        >
+                          로그인
+                        </Button>
+                      )
+              }
             </Li>
           </Ul>
         </Nav>
@@ -65,5 +92,12 @@ const Li = styled('li', {
   fontSize: '1.4rem',
   fontWeight: 800,
 });
+
+const Button = styled('button', {
+  border: 'none',
+  fontSize: '1.4rem',
+  fontWeight: 800,
+  background: 'none',
+})
 
 export default MediaDBHeader;

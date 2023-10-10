@@ -3,8 +3,8 @@ import * as Form from '@radix-ui/react-form';
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { dispatchPassword, dispatchUsername, resetState, selectLoginState } from "../../features/login/loginSlice";
-import { useLoginMutation } from "../../features/login/loginApi";
-import Loading from "./Loading";
+import { useLoginMutation } from "../../app/api";
+import { Loading } from "./Loading";
 
 function Login() {
 
