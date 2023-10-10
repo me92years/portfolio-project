@@ -46,14 +46,14 @@ const Nav = styled('nav', {
 });
 
 const Logo = styled('h1', {
-  marginLeft: '1rem',
+  marginLeft: '2rem',
   fontSize: '1.6rem',
   fontWeight: 800,
 });
 
 const Ul = styled('ul', {
   display: 'flex',
-  marginRight: '1rem',
+  marginRight: '2rem',
   listStyle: 'none',
   columnGap: '1rem'
 });

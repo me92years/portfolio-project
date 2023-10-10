@@ -3,6 +3,8 @@ import * as Form from '@radix-ui/react-form';
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { dispatchPassword, dispatchUsername, resetState, selectLoginState } from "../../features/login/loginSlice";
+import { useLoginMutation } from "../../features/login/loginApi";
+import Loading from "./Loading";
 
 function Login() {
 
@@ -10,18 +12,29 @@ function Login() {
   const dispatch = useAppDispatch();
   const state = useAppSelector(selectLoginState);
 
+  const [loginMutation, { isLoading }] = useLoginMutation();
+
   const events = {
     onClickBack: () => {
       dispatch(resetState());
       navigate('/mediadb');
+      location.reload();
     },
-    onSubmitHandle: (event: React.FormEvent<HTMLFormElement>) => {
+    onSubmitHandle: async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
+      const response: { data: number } = await loginMutation(state) as { data: number };
+      if (response.data) {
+        navigate('/mediadb');
+      } else {
+        alert("로그인에 실패했습니다. 다시 로그인 해 주세요.");
+        location.reload();
+      }
     },
   }
 
   return (
     <Main>
+      {isLoading ? <Loading size={'30%'} /> : ''}
       <Form.Root
         onSubmit={events.onSubmitHandle} asChild>
         <Root>
@@ -60,7 +73,7 @@ function Login() {
               </LabelAndMessage>
               <Form.Control asChild>
                 <Text
-                  type='text'
+                  type='password'
                   defaultValue={state.password}
                   onChange={(event) => dispatch(dispatchPassword(event.target.value))}
                   required

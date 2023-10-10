@@ -3,6 +3,9 @@ import MediaDBHeader from "./components/MediaDBHeader";
 import MediaDBHome from "./components/MediaDBHome";
 
 function MediaDBRoutes() {
+
+  
+
   return (
     <Routes>
       <Route path='/' element={

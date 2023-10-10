@@ -13,13 +13,21 @@ const MediaDBHeader = React.forwardRef(
     return (
       <Header ref={ref}>
         <Nav>
-          <Link className={styles.homeLogo} to='/mediadb'>Media Database</Link>
+          <Link
+            className={styles.homeLogo}
+            to='/mediadb'
+          >
+            Media Database
+          </Link>
           <Ul>
             <Li className={styles.homeLi} >영화</Li>
             <Li className={styles.homeLi} >TV 프로그램</Li>
             <Li className={styles.homeLi} >인물</Li>
           </Ul>
           <Ul>
+            <Li className={styles.homeLi}>
+              <Link className={styles.homeLink} to='/'>이전으로</Link>
+            </Li>
             <Li className={styles.homeLi}>
               <Link className={styles.homeLink} to='/login'>로그인</Link>
             </Li>
@@ -30,6 +38,7 @@ const MediaDBHeader = React.forwardRef(
   });
 
 const Header = styled('header', {
+  position: 'relative',
   width: '100%',
   minWidth: '1440px',
   height: '5rem',
@@ -48,7 +57,7 @@ const Ul = styled('ul', {
   listStyle: 'none',
   columnGap: '1rem',
   '&:last-of-type': {
-    marginRight: '1rem'
+    marginRight: '2rem'
   }
 });
 
