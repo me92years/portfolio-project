@@ -49,7 +49,7 @@ public class UserApi {
       response.addHeader(HttpHeaders.SET_COOKIE, authorization);
       return ResponseEntity.ok(1L);
     } catch (Exception e) {
-      log.error(">>>>> " + e.getMessage());
+      e.printStackTrace();
     }
 
     return ResponseEntity.ok(0L);
