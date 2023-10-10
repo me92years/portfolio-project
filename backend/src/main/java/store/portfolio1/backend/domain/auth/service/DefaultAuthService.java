@@ -35,22 +35,22 @@ public class DefaultAuthService implements AuthService {
   
   private final String AUTHORIZATION = "Authorization";
 
-  @Value("${secrets.token.access.expiration}")
+  @Value("${secrets.token.access.expiration:0}")
   private long SECRET_ACCESS_EXPIRATION;
 
-  @Value("${secrets.token.refresh.expiration}")
+  @Value("${secrets.token.refresh.expiration:0}")
   private long SECRET_REFRESH_EXPIRATION;
   
-  @Value("${secrets.token.secret.key}")
+  @Value("${secrets.token.secret.key:default}")
   private String secretKey;
   
-  @Value("${secrets.cookie.expiration}")
+  @Value("${secrets.cookie.expiration:0}")
   private long SECRET_COOKIE_EXPIRATION;
   
-  @Value("${secrets.cookie.domain}")
+  @Value("${secrets.cookie.domain:default}")
   private String SECRET_COOKIE_DOMAIN;
   
-  @Value("${secrets.cookie.path}")
+  @Value("${secrets.cookie.path:default}")
   private String SECRET_COOKIE_PATH;
 
   private String decode(String token) {
