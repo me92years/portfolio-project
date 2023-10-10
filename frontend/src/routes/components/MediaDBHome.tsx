@@ -51,7 +51,7 @@ const Main = styled('main', {
   minHeight: 'calc(100vh - 5rem)',
   background: '#fafafa',
   '&:nth-of-type(1)': {
-    backgroundImage: 'url("../../../public/image-cinema-background.png")',
+    backgroundImage: 'url("/image-cinema-background.png")',
     backgroundSize: 'cover',
   }
 });
