@@ -22,7 +22,7 @@ import store.portfolio1.backend.domain.user.Social;
 public class DefaultJwtAuthenticationFilter extends OncePerRequestFilter {
 
   private final AuthService authService;
-  
+
   @Override
   protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
     return request.getServletPath().equals("/users/login");
@@ -31,20 +31,26 @@ public class DefaultJwtAuthenticationFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
-    Cookie[] cookies = request.getCookies();
-    String[] datas = authService.validateCookie(cookies);
+    Cookie[] cookies = null;
+    String[] datas = null;
     try {
+      cookies = request.getCookies();
+      datas = authService.validateCookie(cookies);
       Authentication authentication = authService.validateAndReturn(request, datas[0]);
       AuthDTO authDTO = (AuthDTO) authentication.getPrincipal();
-      
+
       SecurityContextHolder.getContext().setAuthentication(authentication);
       successAuthenticate(response, authDTO);
     } catch (Exception e) {
       request.setAttribute("exception", e.getClass().getSimpleName());
-      request.setAttribute("username", datas[1]);
-      request.setAttribute("social", datas[2]);
+      String username = (datas != null && datas[1] != null) ? datas[1] : "";
+      String social = (datas != null && datas[2] != null) ? datas[2] : "";
+      if (username != null && social != null) {
+        request.setAttribute("username", username);
+        request.setAttribute("social", social);
+      }
     }
-    
+
     filterChain.doFilter(request, response);
   }
 

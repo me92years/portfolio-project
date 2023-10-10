@@ -2,6 +2,7 @@ package store.portfolio1.backend.domain.auth.service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import store.portfolio1.backend.domain.user.Role;
 import store.portfolio1.backend.domain.user.Social;
@@ -19,5 +20,7 @@ public interface AuthService {
   String[] validateCookie(Cookie[] cookies);
 
   Authentication validateAndReturn(HttpServletRequest request, String string);
+
+  HttpHeaders generateDeleteCookies();
   
 }

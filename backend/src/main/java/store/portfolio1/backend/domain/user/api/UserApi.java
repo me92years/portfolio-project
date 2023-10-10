@@ -62,4 +62,14 @@ public class UserApi {
     return ResponseEntity.ok(loginResponse);
   }
 
+  @GetMapping("/users/logout")
+  public ResponseEntity<Long> logout() {
+    try {
+      HttpHeaders headers = authService.generateDeleteCookies();
+      return ResponseEntity.ok().headers(headers).body(1L);
+    } catch (Exception e) {
+      return ResponseEntity.ok(0L);
+    }
+  }
+
 }

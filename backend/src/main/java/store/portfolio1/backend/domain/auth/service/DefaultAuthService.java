@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -149,6 +150,32 @@ public class DefaultAuthService implements AuthService {
         authDTO, 
         "", 
         authDTO.getAuthorities());
+  }
+
+  @Override
+  public HttpHeaders generateDeleteCookies() {
+    HttpHeaders headers = new HttpHeaders();
+    String deleteForAuthorization = createDeleteForAuthorization();
+    headers.set(HttpHeaders.SET_COOKIE, deleteForAuthorization);
+    return headers;
+  }
+
+  private String createDeleteForAuthorization() {
+    ZonedDateTime zonedDateTime = ZonedDateTime
+        .ofInstant(Instant.now().minusMillis(1000L), ZoneId.of("GMT"));
+    String expiration = zonedDateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss z", Locale.ENGLISH));
+    StringBuilder sb = new StringBuilder(AUTHORIZATION);
+    sb.append("=NONE")
+      .append("; httponly")
+      .append("; domain=")
+      .append(SECRET_COOKIE_DOMAIN)
+      .append("; path=")
+      .append(SECRET_COOKIE_PATH)
+      .append("; samesite=lax")
+      .append("; expires=")
+      .append(expiration)
+      ;
+    return sb.toString();
   }
   
 }

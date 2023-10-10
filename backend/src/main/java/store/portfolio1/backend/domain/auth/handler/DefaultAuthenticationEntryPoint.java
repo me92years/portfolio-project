@@ -21,7 +21,6 @@ public class DefaultAuthenticationEntryPoint implements AuthenticationEntryPoint
     log.info("> Entry Point");
     String exception = (String) request.getAttribute("exception");
     log.error(exception);
-    
   }
 
 }
