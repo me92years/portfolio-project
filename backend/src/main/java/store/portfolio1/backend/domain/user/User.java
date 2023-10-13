@@ -42,27 +42,27 @@ public class User implements UserDetails {
   private String username;
 
   private String password;
-  
+
   @Lob
   private String refreshToken;
-  
+
   @Enumerated(EnumType.STRING)
   private Role role;
-  
+
   @Enumerated(EnumType.STRING)
   private Social social;
-  
+
   private boolean isAccountNonExpired;
-  
+
   private boolean isAccountNonLocked;
-  
+
   private boolean isCredentialsNonExpired;
-  
+
   private boolean isEnabled;
 
   @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
   private Profile profile;
-  
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return Collections.singleton(new SimpleGrantedAuthority(role.getCode()));

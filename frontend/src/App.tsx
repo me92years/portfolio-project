@@ -1,16 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
 import { styled } from '@stitches/react'
-import PortfolioRoutes from './routes/PortfolioRoutes';
-import MediaDBRoutes from './routes/MediaDBRoutes';
-import Login from './routes/components/Login';
+import PortfolioPage from './pages/PortfolioPage';
+import MediadbPage from './pages/MediadbPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
     <Container>
       <Routes>
-        <Route path='/*' element={<PortfolioRoutes />} />
-        <Route path='/mediadb/*' element={<MediaDBRoutes />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<PortfolioPage />} />
+        <Route path='/mediadb/*' element={<MediadbPage />} />
+        <Route path='/login' element={<LoginPage />} />
       </Routes>
     </Container>
   );
