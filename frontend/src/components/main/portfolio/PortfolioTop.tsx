@@ -1,8 +1,8 @@
 import { forwardRef, Ref } from 'react'
-import { SectionWrap } from '../common/MainObject'
+import { SectionWrap } from '../../common/MainObject'
 import { styled } from '@stitches/react'
-import iconReact from '../../assets/icon_react-wordmark.svg'
-import iconSpring from '../../assets/icon_spring-wordmark.svg'
+import iconReact from '../../../assets/icon_react-wordmark.svg'
+import iconSpring from '../../../assets/icon_spring-wordmark.svg'
 import styles from './PortfolioTop.module.css'
 
 const PortfolioTop = forwardRef(
@@ -32,34 +32,34 @@ const PortfolioTop = forwardRef(
             </p>
           </Div>
           <Div>
-            
+
           </Div>
         </Divs>
       </SectionWrap>
     );
   });
 
-  const Divs = styled('div', {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 300px)',
-    gridTemplateRows: '400px',
-    columnGap: '2rem',
-    marginTop: '4rem'
-  });
+const Divs = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 300px)',
+  gridTemplateRows: '400px',
+  columnGap: '2rem',
+  marginTop: '4rem'
+});
 
-  const Div = styled('div', {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    boxShadow: '0px 6px 12px #888888',
-    background: 'white',
-  });
+const Div = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  boxShadow: '0px 6px 12px #888888',
+  background: 'white',
+});
 
-  const Svg = styled('img', {
-    margin: '2rem 0',
-    width: '50%',
-    height: '50%',
-  });
+const Svg = styled('img', {
+  margin: '2rem 0',
+  width: '50%',
+  height: '50%',
+});
 
 
 export default PortfolioTop;

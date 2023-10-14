@@ -1,7 +1,7 @@
-import { useEffect, useCallback, RefObject } from 'react'
+import { RefObject } from 'react'
 import { NavigateFunction } from 'react-router-dom'
 
-export const usePortfolioHeader = ({
+export const usePortfolioHeaderEvents = ({
   navigate,
   topRef,
   projectRef,
@@ -13,21 +13,21 @@ export const usePortfolioHeader = ({
   aboutRef: RefObject<HTMLElement>,
 }) => {
 
-  const moveHome = useCallback(() => {
+  const moveHome = () => {
     navigate('/');
-  }, []);
+  }
 
-  const moveTop = useCallback(() => {
+  const moveTop = () => {
     topRef.current?.scrollIntoView({ behavior: 'instant' });
-  }, []);
+  }
 
-  const moveProject = useCallback(() => {
+  const moveProject = () => {
     projectRef.current?.scrollIntoView({ behavior: 'instant' });
-  }, []);
+  }
 
-  const moveAbout = useCallback(() => {
+  const moveAbout = () => {
     aboutRef.current?.scrollIntoView({ behavior: 'instant' });
-  }, []);
+  }
 
   return {
     moveHome, moveTop, moveProject, moveAbout
@@ -39,4 +39,5 @@ export const usePortfolioHeader = ({
   };
 };
 
-export type UsePortfolioHeader = ReturnType<typeof usePortfolioHeader>;
+export type PortfolioHeaderEvents
+  = ReturnType<typeof usePortfolioHeaderEvents>;

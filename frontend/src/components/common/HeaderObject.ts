@@ -18,7 +18,6 @@ export const Nav = styled('nav', {
 });
 
 export const Logo = styled('h1', {
-  marginLeft: '1rem',
   '&>button': {
     cursor: 'pointer',
     fontSize: '1.3rem',
@@ -30,8 +29,10 @@ export const NavUl = styled('ul', {
   display: 'flex',
   alignItems: 'center',
   columnGap: '1rem',
-  marginRight: '1rem',
   listStyleType: 'none',
+  '&:last-of-type': {
+    marginRight: '2rem'
+  }
 });
 
 export const NavLi = styled('li', {

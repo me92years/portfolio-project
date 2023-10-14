@@ -1,8 +1,12 @@
-.underline {
+.navButton {
   position: relative;
 }
 
-.underline::before {
+.logo {
+  margin-left: 2rem;
+}
+
+.navButton::before {
   content: '';
   position: absolute;
   left: 0;
@@ -13,6 +17,6 @@
   transition: width 100ms linear;
 }
 
-.underline:hover::before {
+.navButton:hover::before {
   width: 100%;
 }

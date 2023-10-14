@@ -1,6 +1,6 @@
 package store.portfolio1.backend.domain.media;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import store.portfolio1.backend.domain.poster.Poster;
@@ -31,7 +32,7 @@ public class Media {
 
   private String title;
 
-  private LocalDateTime releaseDate;
+  private LocalDate releaseDate;
 
   private String tagLine;
   
@@ -50,5 +51,20 @@ public class Media {
   @ElementCollection(fetch = FetchType.LAZY)
   @Enumerated(EnumType.STRING)
   private List<Genre> genre = new ArrayList<>();
+
+  @Builder
+  public Media(String title, LocalDate releaseDate, String tagLine, String synopsis,
+      String rating, String runningTime, Category category, List<Poster> poster,
+      List<Genre> genre) {
+    this.title = title;
+    this.releaseDate = releaseDate;
+    this.tagLine = tagLine;
+    this.synopsis = synopsis;
+    this.rating = rating;
+    this.runningTime = runningTime;
+    this.category = category;
+    this.poster = poster;
+    this.genre = genre;
+  }
 
 }

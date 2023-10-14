@@ -24,13 +24,13 @@ CREATE TABLE IF NOT EXISTS `medias` (
   `media_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `category` varchar(255) DEFAULT NULL,
   `rating` varchar(255) DEFAULT NULL,
-  `release_date` datetime DEFAULT NULL,
+  `release_date` date DEFAULT NULL,
   `running_time` varchar(255) DEFAULT NULL,
   `synopsis` varchar(255) DEFAULT NULL,
   `tag_line` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`media_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `medias_poster` (
   KEY `FKxoymeexkp6sm5rmh4svmhj2o` (`media_media_id`),
   CONSTRAINT `FKjenict1s1luoh94i0cj4cscaa` FOREIGN KEY (`poster_poster_id`) REFERENCES `posters` (`poster_id`),
   CONSTRAINT `FKxoymeexkp6sm5rmh4svmhj2o` FOREIGN KEY (`media_media_id`) REFERENCES `medias` (`media_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -52,9 +52,9 @@ CREATE TABLE IF NOT EXISTS `media_genre` (
   `genre` varchar(255) DEFAULT NULL,
   KEY `FKd8uovsu33eu3rv9uvonj963rn` (`media_media_id`),
   CONSTRAINT `FKd8uovsu33eu3rv9uvonj963rn` FOREIGN KEY (`media_media_id`) REFERENCES `medias` (`media_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- 내보낼 데이터가 선택되어 있지 않습니다.
+-- 내보낼 데이터가 선택되어 있지 않습니다.qa
 
 -- 테이블 mediadb.posters 구조 내보내기
 CREATE TABLE IF NOT EXISTS `posters` (
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `posters` (
   `poster_file_name` varchar(255) DEFAULT NULL,
   `uuid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`poster_id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   UNIQUE KEY `UK_lnk8iosvsrn5614xw3lgnybgk` (`email`),
   KEY `FK410q61iev7klncmpqfuo85ivh` (`user_id`),
   CONSTRAINT `FK410q61iev7klncmpqfuo85ivh` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 

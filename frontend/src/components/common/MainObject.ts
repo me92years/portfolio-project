@@ -13,3 +13,9 @@ export const SectionWrap = styled('section', {
     minHeight: 'calc(100vh - 5rem)',
   }
 });
+
+export const InputText = styled('input', {
+  width: 'calc(100% - 1.05rem)',
+  padding: '0.4rem',
+  fontSize: '1.1rem',
+});
