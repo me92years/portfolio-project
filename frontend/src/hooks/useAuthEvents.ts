@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { AuthResponse, resetAuthResponse, saveAuthResponse, selectAuthData } from '../features/auth/authSlice';
+import { AuthResponse, saveAuthResponse, selectAuthData } from '../features/auth/authSlice';
 import { useLazyResponseQuery } from '../features/auth/authApi';
 import { AppDispatch } from '../app/store';
 import { useAppSelector } from '../app/hooks';

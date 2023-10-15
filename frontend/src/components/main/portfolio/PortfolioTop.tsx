@@ -7,6 +7,7 @@ import styles from './PortfolioTop.module.css'
 
 const PortfolioTop = forwardRef(
   (_props, ref: Ref<HTMLElement>) => {
+    
     return (
       <SectionWrap className={`${styles.sectionWrap} first`} ref={ref}>
         <h1 className={styles.sectionTitle}>
