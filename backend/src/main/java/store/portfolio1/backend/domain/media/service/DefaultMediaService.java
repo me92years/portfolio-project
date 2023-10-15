@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import store.portfolio1.backend.domain.media.Media;
 import store.portfolio1.backend.domain.media.repository.MediaRepository;
-import store.portfolio1.backend.domain.media.request.MediaRequest;
+import store.portfolio1.backend.domain.media.request.MediaAddRequest;
 
 @Service
 @RequiredArgsConstructor
@@ -15,8 +15,8 @@ public class DefaultMediaService implements MediaService {
   
   @Override
   @Transactional
-  public Long addDefaultMedia(MediaRequest mediaRequest) {
-    Media defaultMedia = mediaRequest.toDefaultEntity();
+  public Long addMedia(MediaAddRequest addRequest) {
+    Media defaultMedia = addRequest.toDefaultEntity();
     return mediaRepository.save(defaultMedia).getId();
   }
   

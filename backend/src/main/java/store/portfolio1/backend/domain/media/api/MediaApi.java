@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
-import store.portfolio1.backend.domain.media.request.MediaRequest;
+import store.portfolio1.backend.domain.media.request.MediaAddRequest;
 import store.portfolio1.backend.domain.media.service.MediaService;
 
 @RestController
@@ -16,10 +16,10 @@ public class MediaApi {
   private final MediaService mediaService;
 
   @PostMapping("/media/add")
-  public Mono<ResponseEntity<Long>> addMedia(@RequestBody MediaRequest mediaRequest) {
+  public Mono<ResponseEntity<Long>> addMedia(@RequestBody MediaAddRequest mediaRequest) {
     return Mono.fromSupplier(() -> {
       try {
-        long addResult = mediaService.addDefaultMedia(mediaRequest);
+        long addResult = mediaService.addMedia(mediaRequest);
         return ResponseEntity.ok(addResult);
       } catch (Exception e) {
         throw e;

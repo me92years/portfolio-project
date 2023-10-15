@@ -15,7 +15,7 @@ import store.portfolio1.backend.domain.poster.Poster;
 
 @Setter
 @ToString
-public class MediaRequest {
+public class MediaAddRequest {
 
   private String title;
 

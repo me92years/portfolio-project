@@ -8,10 +8,10 @@ import lombok.Setter;
 public class PageRequest {
 
   private int page = 1;
-  private int size = 10;
+  private int size = 20;
  
   public Pageable getPageable(Sort sort) {
-    return org.springframework.data.domain.PageRequest.of(page, size, sort);
+    return org.springframework.data.domain.PageRequest.of(page - 1, size, sort);
   }
   
 }
