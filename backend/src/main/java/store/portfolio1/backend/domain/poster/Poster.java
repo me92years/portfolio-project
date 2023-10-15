@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,5 +27,12 @@ public class Poster {
   private String uuid;
 
   private String posterFileName;
+
+  @Builder
+  public Poster(long id, String path, String uuid, String posterFileName) {
+    this.path = path;
+    this.uuid = uuid;
+    this.posterFileName = posterFileName;
+  }
 
 }

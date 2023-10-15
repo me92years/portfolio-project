@@ -11,9 +11,9 @@ import lombok.ToString;
 import store.portfolio1.backend.domain.media.Category;
 import store.portfolio1.backend.domain.media.Genre;
 import store.portfolio1.backend.domain.media.Media;
+import store.portfolio1.backend.domain.poster.Poster;
 
 @Setter
-@Getter
 @ToString
 public class MediaRequest {
 
@@ -27,12 +27,24 @@ public class MediaRequest {
   
   private MultipartFile porterFile;
 
-  public Media toEntity() {
-    return Media.builder().title(title)
+  public Media toDefaultEntity() {
+    return Media.builder()
+        .title(title)
         .releaseDate(getReleaseDate(releaseDate))
         .category(getCategory(category))
         .genre(getGenre(genre))
+        .poster(getDefaultPorterFile())
         .build();
+  }
+
+  private List<Poster> getDefaultPorterFile() {
+    Poster poster = Poster.builder()
+        .uuid("")
+        .path("/common")
+        .posterFileName("default_poster.png")
+        .build();
+    
+    return Arrays.asList(poster);
   }
 
   private LocalDate getReleaseDate(String releaseDate) {
