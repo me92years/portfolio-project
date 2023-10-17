@@ -2,14 +2,24 @@ pipeline {
 
     agent any
     
+    environment {
+    	FRONTEND_DIR = "${env.WORKSPACE}/frontend"
+    	BACKEND_DIR = "${env.WORKSPACE}/backend"
+    }
+    
     stages {
     
         stage('Build') {
             steps {
                 sh """
-                 cd frontend
+                 cd ${FRONTEND_DIR}
                  yarn install
                  yarn build
+                """
+                sh """
+                	cd ${BACKEND_DIR}
+                	chmod 700 ./gradlew
+                	./gradlew build
                 """
             }
         }
