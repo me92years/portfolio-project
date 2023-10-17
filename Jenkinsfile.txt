@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo 'building the application...'
+                git pull origin main
             }
         }
         stage('test') {
