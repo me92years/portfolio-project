@@ -1,18 +1,17 @@
 pipeline {
     agent any
-    environment  {
-    	FRONTEND_DIR = '~/'
+    environment {
+    	FRONTEND_DIR = "${env.WORKSPACE}/frontend"
     }
     stages {
         stage('Build') {
             steps {
-            		echo "$(${FRONTEND_DIR})"
                 sh """
-                	
+                	cd ${FRONTEND_DIR}
+                	yarn install
+                	yarn build
                 """
-                sh """
-                	
-                """
+             
             }
         }
         stage('Test') {
