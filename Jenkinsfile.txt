@@ -3,7 +3,11 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                git pull origin main
+                checkout scmGit(
+							    branches: [[name: 'v4.9.x']],
+							    userRemoteConfigs: [[credentialsId: 'GITHub_Username_Password',
+	        				url: 'https://github.com/me92years/portfolio-project.git']]
+        				)
             }
         }
         stage('test') {
