@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-            		echo "${FRONTEND_DIR}"
+            		echo "$(${FRONTEND_DIR})"
                 sh """
                 	
                 """
