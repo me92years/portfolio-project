@@ -1,21 +1,26 @@
 pipeline {
     agent any
+    environment  {
+    	FRONTEND_DIR = '~/'
+    }
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
+            		echo "${FRONTEND_DIR}"
                 sh """
-                	git pull origin main
-                	cd frontend 
-                	yarn build
+                	
+                """
+                sh """
+                	
                 """
             }
         }
-        stage('test') {
+        stage('Test') {
             steps {
                 echo 'testing the application...'
             }
         }
-        stage('deploy') {
+        stage('Deploy') {
             steps {
                 echo 'deploying the application...'
             }
