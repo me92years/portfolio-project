@@ -11,7 +11,9 @@ pipeline {
                 	yarn install
                 	yarn build
                 """
-             
+             		sh """
+             		
+             		"""
             }
         }
         stage('Test') {
