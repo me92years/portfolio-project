@@ -1,14 +1,4 @@
 :root {
-  --primary-color: #007bff; /* Primary Color */
-  --secondary-color: #6c757d; /* Secondary Color */
-  --success-color: #28a745; /* Success Color */
-  --danger-color: #dc3545; /* Danger Color */
-  --warning-color: #ffc107; /* Warning Color */
-  --info-color: #17a2b8; /* Info Color */
-  --light-color: #f8f9fa; /* Light Color */
-  --dark-color: #343a40; /* Dark Color */
-  --white-color: #ffffff; /* White Color */
-
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-size: 16px;
@@ -25,7 +15,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
-html, body {
+html, body, #root {
   width: 100%;
   height: auto;
   margin: 0;
@@ -33,12 +23,14 @@ html, body {
 
 p, h1, h2, h3, h4, h5, h6, ul, li {
   margin: 0;
+  padding: 0;
   font-size: inherit;
 }
 
+
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #242424;
+    background-color: #fafafa;
   }
 }

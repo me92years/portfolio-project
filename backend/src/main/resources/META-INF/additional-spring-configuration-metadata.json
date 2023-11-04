@@ -28,5 +28,20 @@
     "name": "secrets.cookie.path",
     "type": "java.lang.String",
     "description": "A description for 'secrets.cookie.path'"
+  },
+  {
+    "name": "secrets.server.upload_uri",
+    "type": "java.lang.String",
+    "description": "A description for 'secrets.server.upload_uri'"
+  },
+  {
+    "name": "site.client.url",
+    "type": "java.lang.String",
+    "description": "A description for 'site.client.url'"
+  },
+  {
+    "name": "secrets.cookie.secure",
+    "type": "java.lang.String",
+    "description": "A description for 'secrets.cookie.secure'"
   }
 ]}

@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+}
+
+.header_h1 {
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+
+.nav {
+  margin-right: 1rem;
+}
+
+.nav_ul {
+  list-style-type: none;
+}
+
+.nav_btn {
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 800;
+  background: none;
+}
+
+.header_h1,
+.nav_btn {
+  cursor: pointer;
+  color: darkblue;
+}
+
+.header_h1:hover,
+.nav_btn:hover {
+  cursor: pointer;
+  color: royalblue;
+}

@@ -1,7 +1,6 @@
 package store.portfolio1.backend.domain.user;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,78 +10,79 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import store.portfolio1.backend.domain.profile.Profile;
+import store.portfolio1.backend.common.entity.BaseTime;
+import store.portfolio1.backend.domain.comment.Comment;
+import store.portfolio1.backend.domain.oauth2.info.OAuth2UserInfo;
+import store.portfolio1.backend.domain.post.Post;
+import store.portfolio1.backend.domain.user.enums.Role;
 
 @Entity
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter
-@Table(name = "USERS")
-public class User implements UserDetails {
-
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 1L;
+@Table(name = "users")
+public class User extends BaseTime {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id", updatable = false)
-  private long id;
+  private long pid;
+
+  @Column(unique = true)
+  private String sid;
 
   @Column(unique = true)
   private String username;
 
   private String password;
 
+  @Column(nullable = false, unique = true)
+  private String email;
+
+  @Column(nullable = false)
+  private String profileName;
+
+  @Column(nullable = false)
+  private String profileImage;
+
   @Lob
-  private String refreshToken;
+  private String refreshJwt;
+
+  @Column(nullable = false)
+  private boolean isSocial;
 
   @Enumerated(EnumType.STRING)
   private Role role;
 
-  @Enumerated(EnumType.STRING)
-  private Social social;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+  public List<Post> posts;
 
-  private boolean isAccountNonExpired;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+  public List<Comment> comments;
 
-  private boolean isAccountNonLocked;
-
-  private boolean isCredentialsNonExpired;
-
-  private boolean isEnabled;
-
-  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-  private Profile profile;
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singleton(new SimpleGrantedAuthority(role.getCode()));
+  public static User createByOAuth2UserInfo(OAuth2UserInfo oAuth2UserInfo) {
+    return User.builder().sid(oAuth2UserInfo.getSid())
+        .email(oAuth2UserInfo.getEmail())
+        .profileImage(oAuth2UserInfo.getProfileImage())
+        .profileName(oAuth2UserInfo.getProfileName())
+        .isSocial(true).role(Role.USER).build();
   }
 
-  @Builder
-  public User(String username, String password, Role role, Social social, Profile profile) {
-    this.username = username;
-    this.password = password;
-    this.role = role;
-    this.social = social;
-    this.profile = profile;
-    this.isAccountNonExpired = true;
-    this.isAccountNonLocked = true;
-    this.isCredentialsNonExpired = true;
-    this.isEnabled = true;
+  public User updateByOAuth2UserInfo(OAuth2UserInfo oAuth2UserInfo) {
+    this.profileImage = oAuth2UserInfo.getProfileImage();
+    this.profileName = oAuth2UserInfo.getProfileName();
+    return this;
   }
 
-  public void setRefreshToken(String refreshToken) {
-    this.refreshToken = refreshToken;
+  public void updateRefreshJwt(String refreshJwt) {
+    this.refreshJwt = refreshJwt;
   }
 
 }

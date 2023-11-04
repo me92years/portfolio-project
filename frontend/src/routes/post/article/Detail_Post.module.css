@@ -1,0 +1,77 @@
+.article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: auto;
+}
+
+.post {
+  display: grid;
+  grid-template:
+    "div_a div_b" auto
+    "div_c div_d" auto
+    "div_e div_e" 500px
+    "div_f ." auto
+    / 1fr max-content;
+  justify-content: space-between;
+  row-gap: 1rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 2rem 0;
+}
+
+.input_text {
+  width: calc(100% - 1.05rem);
+  padding: 0.4rem;
+}
+
+.input_textarea {
+  resize: none;
+  width: calc(100% - 0.4rem);
+  height: 100%;
+}
+
+.button {
+  padding: 0.4rem 0.8rem;
+}
+
+.div {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.div_a {
+  grid-area: div_a;
+  grid-template-columns: 15% auto;
+}
+
+.div_b {
+  grid-template-columns: 35% auto;
+  grid-area: div_b;
+}
+
+.div_c {
+  grid-template-columns: 15% auto;
+  grid-area: div_c;
+}
+
+.div_d {
+  grid-template-columns: 35% auto;
+  grid-area: div_d;
+}
+
+.div_e {
+  grid-template-columns: 10% auto;
+  grid-area: div_e;
+}
+
+.div_f {
+  grid-template-columns: max-content max-content max-content;
+  margin-left: 4.8rem;
+  grid-area: div_f;
+}
