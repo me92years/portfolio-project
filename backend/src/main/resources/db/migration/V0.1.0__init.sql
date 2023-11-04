@@ -14,11 +14,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- dev 데이터베이스 구조 내보내기
-CREATE DATABASE IF NOT EXISTS `dev` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `dev`;
-
 -- 테이블 dev.comments 구조 내보내기
 CREATE TABLE IF NOT EXISTS `comments` (
   `pid` bigint(20) NOT NULL AUTO_INCREMENT,
