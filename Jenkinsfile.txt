@@ -5,7 +5,7 @@ pipeline {
     environment {
     	FRONTEND_DIR = "${env.WORKSPACE}/frontend"
     	BACKEND_DIR = "${env.WORKSPACE}/backend"
-    	CONFIG_DIR = "${env.WORKSPACE}/configs"
+    	CONFIG_DIR = "/var/lib/jenkins/workspace/configs"
     	RESOURCES_DIR = "${BACKEND_DIR}/src/main/resources"
     }
     
