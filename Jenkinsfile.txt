@@ -19,7 +19,7 @@ pipeline {
                 sh """
                 	cd ${BACKEND_DIR}
                 	chmod 700 ./gradlew
-                	./gradlew build
+                	./gradlew build -PconfigLocation=/var/lib/jenkins/workspace/configs/
                 """
             }
         }
