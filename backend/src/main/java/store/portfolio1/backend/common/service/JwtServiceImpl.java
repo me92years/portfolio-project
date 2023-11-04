@@ -37,7 +37,7 @@ public class JwtServiceImpl implements JwtService {
   @Value("${secrets.token.refresh.expiration:0}")
   private Long TOKEN_REFRESH_EXPIRATION;
 
-  @Value("${secrets.token.token.secret:a}")
+  @Value("${secrets.token.token.secret:default}")
   private String TOKEN_SECRET_KEY;
 
   public String createJwtToken(String email, Role role) {

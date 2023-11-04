@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CookieServiceImpl implements CookieService {
 
-  @Value("${secrets.cookie.expiration:86400}")
+  @Value("${secrets.cookie.expiration:0}")
   private int COOKIE_EXPIRATION;
   
-  @Value("${secrets.cookie.domain:portfolio1.store}")
+  @Value("${secrets.cookie.domain:default}")
   private String COOKIE_DOMAIN;
   
   @Value("${secrets.cookie.path:/}")
