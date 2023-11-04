@@ -12,13 +12,13 @@ pipeline {
         stage('Build') {
             steps {
                 sh """
-                    cd ${FRONTEND_DIR}
-                    yarn install
-                    yarn build
+                	cd ${FRONTEND_DIR}
+                	yarn install
+                	yarn build
                 """
                 sh """
-                    cd ${BACKEND_DIR}
-                    chmod 700 ./gradlew
+                	cd ${BACKEND_DIR}
+                	chmod 700 ./gradlew
                 	./gradlew build
                 """
             }
