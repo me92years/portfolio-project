@@ -57,6 +57,10 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
+bootRun {
+    systemProperty 'spring.config.location', 'file:/var/lib/jenkins/workspace/configs/'
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

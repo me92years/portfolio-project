@@ -19,10 +19,6 @@ pipeline {
                 	yarn build
                 """
                 sh """
-                	sudo chmod 700 ${CONFIG_DIR}/*
-                	mv ${CONFIG_DIR}/* ${RESOURCES_DIR}
-                """
-                sh """
                 	cd ${BACKEND_DIR}
                 	chmod 700 ./gradlew
                 	./gradlew build
