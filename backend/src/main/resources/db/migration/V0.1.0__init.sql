@@ -15,88 +15,64 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- mediadb 데이터베이스 구조 내보내기
-CREATE DATABASE IF NOT EXISTS `mediadb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `mediadb`;
+-- dev 데이터베이스 구조 내보내기
+CREATE DATABASE IF NOT EXISTS `dev` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `dev`;
 
--- 테이블 mediadb.medias 구조 내보내기
-CREATE TABLE IF NOT EXISTS `medias` (
-  `media_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `category` varchar(255) DEFAULT NULL,
-  `rating` varchar(255) DEFAULT NULL,
-  `release_date` date DEFAULT NULL,
-  `running_time` varchar(255) DEFAULT NULL,
-  `synopsis` varchar(255) DEFAULT NULL,
-  `tag_line` varchar(255) DEFAULT NULL,
+-- 테이블 dev.comments 구조 내보내기
+CREATE TABLE IF NOT EXISTS `comments` (
+  `pid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `mod_date` datetime NOT NULL,
+  `reg_date` datetime NOT NULL,
+  `inner_text` varchar(255) DEFAULT NULL,
+  `parent_comment_pid` bigint(20) DEFAULT NULL,
+  `post_pid` bigint(20) DEFAULT NULL,
+  `user_pid` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`pid`),
+  KEY `FKofx3wmk85bv53tj938d46g9u2` (`parent_comment_pid`),
+  KEY `FK8f56llytavgpbkkwxbihp31q0` (`post_pid`),
+  KEY `FK70gpl4j990vaxchpbfoae3mob` (`user_pid`),
+  CONSTRAINT `FK70gpl4j990vaxchpbfoae3mob` FOREIGN KEY (`user_pid`) REFERENCES `users` (`pid`),
+  CONSTRAINT `FK8f56llytavgpbkkwxbihp31q0` FOREIGN KEY (`post_pid`) REFERENCES `posts` (`pid`),
+  CONSTRAINT `FKofx3wmk85bv53tj938d46g9u2` FOREIGN KEY (`parent_comment_pid`) REFERENCES `comments` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 dev.posts 구조 내보내기
+CREATE TABLE IF NOT EXISTS `posts` (
+  `pid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `mod_date` datetime NOT NULL,
+  `reg_date` datetime NOT NULL,
+  `inner_text` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`media_id`)
+  `user_pid` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`pid`),
+  KEY `FKj83siukst0sx7j7exmrys3nfl` (`user_pid`),
+  CONSTRAINT `FKj83siukst0sx7j7exmrys3nfl` FOREIGN KEY (`user_pid`) REFERENCES `users` (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
--- 테이블 mediadb.medias_poster 구조 내보내기
-CREATE TABLE IF NOT EXISTS `medias_poster` (
-  `media_media_id` bigint(20) NOT NULL,
-  `poster_poster_id` bigint(20) NOT NULL,
-  UNIQUE KEY `UK_8hotkwxg3kej38ss8deqd1v7i` (`poster_poster_id`),
-  KEY `FKxoymeexkp6sm5rmh4svmhj2o` (`media_media_id`),
-  CONSTRAINT `FKjenict1s1luoh94i0cj4cscaa` FOREIGN KEY (`poster_poster_id`) REFERENCES `posters` (`poster_id`),
-  CONSTRAINT `FKxoymeexkp6sm5rmh4svmhj2o` FOREIGN KEY (`media_media_id`) REFERENCES `medias` (`media_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- 내보낼 데이터가 선택되어 있지 않습니다.
-
--- 테이블 mediadb.media_genre 구조 내보내기
-CREATE TABLE IF NOT EXISTS `media_genre` (
-  `media_media_id` bigint(20) NOT NULL,
-  `genre` varchar(255) DEFAULT NULL,
-  KEY `FKd8uovsu33eu3rv9uvonj963rn` (`media_media_id`),
-  CONSTRAINT `FKd8uovsu33eu3rv9uvonj963rn` FOREIGN KEY (`media_media_id`) REFERENCES `medias` (`media_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- 내보낼 데이터가 선택되어 있지 않습니다.qa
-
--- 테이블 mediadb.posters 구조 내보내기
-CREATE TABLE IF NOT EXISTS `posters` (
-  `poster_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `path` varchar(255) DEFAULT NULL,
-  `poster_file_name` varchar(255) DEFAULT NULL,
-  `uuid` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`poster_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- 내보낼 데이터가 선택되어 있지 않습니다.
-
--- 테이블 mediadb.profiles 구조 내보내기
-CREATE TABLE IF NOT EXISTS `profiles` (
-  `profile_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  `image_url` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`profile_id`),
-  UNIQUE KEY `UK_lnk8iosvsrn5614xw3lgnybgk` (`email`),
-  KEY `FK410q61iev7klncmpqfuo85ivh` (`user_id`),
-  CONSTRAINT `FK410q61iev7klncmpqfuo85ivh` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- 내보낼 데이터가 선택되어 있지 않습니다.
-
--- 테이블 mediadb.users 구조 내보내기
+-- 테이블 dev.users 구조 내보내기
 CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `is_account_non_expired` bit(1) NOT NULL,
-  `is_account_non_locked` bit(1) NOT NULL,
-  `is_credentials_non_expired` bit(1) NOT NULL,
-  `is_enabled` bit(1) NOT NULL,
+  `pid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `mod_date` datetime NOT NULL,
+  `reg_date` datetime NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `is_social` bit(1) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `refresh_token` longtext DEFAULT NULL,
+  `profile_image` varchar(255) NOT NULL,
+  `profile_name` varchar(255) NOT NULL,
+  `refresh_jwt` longtext DEFAULT NULL,
   `role` varchar(255) DEFAULT NULL,
-  `social` varchar(255) DEFAULT NULL,
+  `sid` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
+  PRIMARY KEY (`pid`),
+  UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`),
+  UNIQUE KEY `UK_b0p381cdwsqqybu4otilkem9j` (`sid`),
   UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
