@@ -19,7 +19,8 @@ pipeline {
                 	yarn build
                 """
                 sh """
-                	mv ${CONFIG_DIR}/*-yml ${RESOURCES_DIR}
+                	chmod 700 ${CONFIG_DIR}/*
+                	mv ${CONFIG_DIR}/* ${RESOURCES_DIR}
                 """
                 sh """
                 	cd ${BACKEND_DIR}
