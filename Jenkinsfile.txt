@@ -19,7 +19,6 @@ pipeline {
                 	yarn build
                 """
                 sh """
-                	chmod 755 ${CONFIG_DIR}/*
                 	cp ${CONFIG_DIR}/* ${RESOURCES_DIR}
                 """
                 sh """
