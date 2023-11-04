@@ -61,6 +61,10 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+bootRun {
+	
+}
+
 compileJava {
 	def querydslDir = "$buildDir/generated/querydsl"
 	

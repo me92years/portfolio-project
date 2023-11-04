@@ -5,6 +5,8 @@ pipeline {
     environment {
     	FRONTEND_DIR = "${env.WORKSPACE}/frontend"
     	BACKEND_DIR = "${env.WORKSPACE}/backend"
+    	CONFIG_DIR = "${env.WORKSPACE}/configs"
+    	RESOURCES_DIR = "${BACKEND_DIR}/src/main/resources"
     }
     
     stages {
@@ -17,9 +19,12 @@ pipeline {
                 	yarn build
                 """
                 sh """
+                	mv ${CONFIG_DIR}/* ${RESOURCES_DIR}
+                """
+                sh """
                 	cd ${BACKEND_DIR}
                 	chmod 700 ./gradlew
-                	./gradlew build -PconfigLocation=/var/lib/jenkins/workspace/configs/
+                	./gradlew build
                 """
             }
         }
