@@ -5,8 +5,7 @@ pipeline {
 		stage('Build') {
 			steps {
 				sh """
-					cd ${env.WORKSPACE}
-					sudo ./deploy.sh
+					echo "test"
 				"""
 			}
 		}
