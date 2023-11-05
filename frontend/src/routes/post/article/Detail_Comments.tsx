@@ -6,6 +6,7 @@ import styles from './Detail_Comments.module.css';
 const MOD = 'mod';
 const MOD_SUBMIT = 'mod_submit';
 const MOD_CANCLE = 'mod_cancle';
+const DEL = 'del';
 const PUT_IN_COMMENT = 'put_in_comment';
 const PUT_SUBMIT = 'put_submit';
 const PUT_CANCLE = 'put_cancle';
@@ -15,6 +16,7 @@ const PUT_IN_POST_CANCLE = 'put_in_post_cancle';
 
 type PutMutation = ReturnType<typeof api.usePutCommentMutation>;
 type ModMutation = ReturnType<typeof api.useModCommentMutation>;
+type DelMutation = ReturnType<typeof api.useDelCommentMutation>;
 
 const Comment = ({
   comments,
@@ -24,6 +26,7 @@ const Comment = ({
   setIsModal,
   putMutation,
   modMutation,
+  delMutation,
   userPrincipal
 }: {
   comments: CommentGetDto[],
@@ -34,10 +37,12 @@ const Comment = ({
   userPrincipal: UserPrincipal
   putMutation: PutMutation,
   modMutation: ModMutation,
+  delMutation: DelMutation,
 }) => {
   const [view, setView] = useState<{ [key: string]: JSX.Element }>({});
   const [putComment] = putMutation;
   const [modComment] = modMutation;
+  const [delComment] = delMutation;
   const handleClick = (e: MouseEvent) => {
     const target = e.target as HTMLButtonElement;
     const label = target.ariaLabel;
@@ -146,6 +151,7 @@ const Comment = ({
       return;
     };
 
+    // 댓글 수정 취소
     if (label === MOD_CANCLE) {
       e.preventDefault();
       const textarea = form.querySelector('textarea') as HTMLTextAreaElement;
@@ -155,6 +161,7 @@ const Comment = ({
       return;
     }
 
+    // 댓글 수정 서브밋
     if (label === MOD_SUBMIT) {
       e.preventDefault();
       const submit = async (json: string) => {
@@ -167,6 +174,24 @@ const Comment = ({
       }
       const entries = Object.fromEntries(new FormData(form));
       submit(JSON.stringify(entries));
+      return;
+    }
+
+    if (label === DEL) {
+      e.preventDefault();
+      if (confirm("댓글을 삭제하시겠습니까?")) {
+        const deleteSubmit = async (json: string) => {
+          const result = await delComment(json).unwrap();
+          if (result) {
+            location.reload();
+          } else {
+            alert("서버에 문제가 발생했습니다. 다시 시도 해 주세요.");
+          }
+        }
+        const entries = Object.fromEntries(new FormData(form));
+        const json = JSON.stringify(entries);
+        deleteSubmit(json);
+      }
       return;
     }
 
@@ -247,6 +272,13 @@ const Comment = ({
                         aria-label={MOD}
                       >
                         수정
+                      </button>
+                      <button
+                        type='button'
+                        className={`feature_del`}
+                        aria-label={DEL}
+                      >
+                        삭제
                       </button>
                       <button
                         type='button'
@@ -343,6 +375,7 @@ const Comments = ({ comments, postPid, userPrincipal }: {
   const [isModal, setIsModal] = useState<boolean>(false);
   const putMutation = api.usePutCommentMutation();
   const modMutation = api.useModCommentMutation();
+  const delMutation = api.useDelCommentMutation();
   const [putComment] = putMutation;
 
   // 리사이즈
@@ -452,6 +485,7 @@ const Comments = ({ comments, postPid, userPrincipal }: {
         postPid={postPid}
         putMutation={putMutation}
         modMutation={modMutation}
+        delMutation={delMutation}
         autoResize={autoResize}
         setIsModal={setIsModal}
         userPrincipal={userPrincipal}

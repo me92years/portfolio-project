@@ -58,6 +58,13 @@ const api = createApi({
         body: mod
       })
     })),
+    delComment: builder.mutation<number, string>(({
+      query: (del) => ({
+        url: '/comment/del',
+        method: 'post',
+        body: del
+      })
+    })),
     // 회원 인증
     getUserPrincipal: builder.query<UserPrincipal, void>(({
       query: () => ({

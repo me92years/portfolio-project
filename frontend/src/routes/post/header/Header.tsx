@@ -11,7 +11,7 @@ const Header = ({ userPrincipal, isGetUserPrincipalLoading }: {
 
   const login = (e: ButtonMouseEvent) => {
     e.preventDefault();
-    location.href = '/api/oauth2/authorization/google';
+    location.href = '/login';
   };
 
   const logout = (e: ButtonMouseEvent) => {
