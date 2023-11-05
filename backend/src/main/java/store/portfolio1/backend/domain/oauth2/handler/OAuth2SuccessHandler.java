@@ -21,7 +21,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
   private final JwtService jwtService;
   private final CookieService cookieService;
   
-  @Value("${site.client.url}")
+  @Value("${site.client.url:default}")
   private String SITE_CLIENT_URL;
   
   @Override
