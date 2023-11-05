@@ -3,8 +3,6 @@ pipeline {
 		environment {
 			FRONTEND_DIR = "${env.WORKSPACE}/frontend"
 			BACKEND_DIR = "${env.WORKSPACE}/backend"
-    	CONFIG_DIR = "/var/lib/jenkins/workspace/configs"
-    	RESOURCES_DIR = "${BACKEND_DIR}/src/main/resources"
     }
   
   stages {
@@ -19,7 +17,7 @@ pipeline {
   	stage('Copy Configs to Resources') {
   		steps {
   			dir(path: "${env.BACKEND_DIR}") {
-  				sh 'cp -r * "${env.RESOURCES_DIR}"'
+  				sh "cp -r ${env.WORKSPACE}/configs/* ${env.BACKEND_DIR}/src/main/resources"
   			}
   		}
   	}
