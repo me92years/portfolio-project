@@ -9,6 +9,9 @@ pipeline {
 					sudo yarn build
 					cd ${env.CONFIG_DIR}
 					sudo cp -R * ${env.BACKEND_DIR}/src/main/resources
+					cd ${env.BACKEND_DIR}
+					sudo ./gradlew build
+					
 				"""
 			}
 		}
