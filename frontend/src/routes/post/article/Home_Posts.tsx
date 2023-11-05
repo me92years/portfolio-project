@@ -34,10 +34,10 @@ const Posts = ({ userPrincipal }: { userPrincipal: UserPrincipal }) => {
                 data-pid={dto.pid}
                 aria-label={POST_GET_DETAIL}
               >
-                <td>{dto.writerName}</td>
-                <td>{dto.title}</td>
-                <td>{dto.regDate}</td>
-                <td>{dto.modDate}</td>
+                <td aria-label={POST_GET_DETAIL}>{dto.writerName}</td>
+                <td aria-label={POST_GET_DETAIL}>{dto.title}</td>
+                <td aria-label={POST_GET_DETAIL}>{dto.regDate}</td>
+                <td aria-label={POST_GET_DETAIL}>{dto.modDate}</td>
               </tr>
             ))
           });
