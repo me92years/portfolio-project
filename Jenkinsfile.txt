@@ -16,14 +16,6 @@ pipeline {
   		}
   	}
   	
-  	stage('Update Backend') {
-  		steps {
-  			dir(path: "${env.BACKEND_DIR}") {
-  				sh 'git pull'
-  			}
-  		}
-  	}
-  	
   	stage('Copy Configs to Resources') {
   		steps {
   			dir(path: "${env.BACKEND_DIR}") {
