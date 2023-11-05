@@ -7,6 +7,8 @@ pipeline {
 				sh """
 					cd ${env.FRONTEND_DIR}
 					sudo yarn build
+					cd ${env.CONFIG_DIR}
+					sudo cp -R * ${env.BACKEND_DIR}/src/main/resources
 				"""
 			}
 		}
