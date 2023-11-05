@@ -5,9 +5,7 @@ pipeline {
 		stage('Build') {
 			steps {
 				sh """
-					cd ${env.WORKSPACE}
-					chmod 755 ./deploy.sh
-					sudo ./deploy.sh
+			
 				"""
 			}
 		}
