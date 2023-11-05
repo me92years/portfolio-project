@@ -6,7 +6,7 @@ const Index = () => {
     <div className={styles.container}>
       <h1>로그인 페이지</h1>
       <div>
-        <a href='http://portfolio1.store/api/oauth2/authorization/google'>구글로 로그인</a>
+        <a href='https://portfolio1.store/api/oauth2/authorization/google'>구글로 로그인</a>
       </div>
     </div>
   );
