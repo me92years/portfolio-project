@@ -5,15 +5,10 @@ pipeline {
 		stage('Build') {
 			steps {
 				sh """
-					cd ${env.FRONTEND_DIR}
-					sudo yarn build
-					cd ${env.CONFIG_DIR}
-					sudo cp -R * ${env.BACKEND_DIR}/src/main/resources
-					cd ${env.BACKEND_DIR}
-					sudo chmod 755 ./gradlew
-					./gradlew build
+					
 				"""
 			}
 		}
+
 	}
 }
