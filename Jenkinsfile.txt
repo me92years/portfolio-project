@@ -1,26 +1,14 @@
 pipeline {
 	agent any
-		environment {
-			FRONTEND_DIR = "${env.WORKSPACE}/frontend"
-			BACKEND_DIR = "${env.WORKSPACE}/backend"
-			CONFIGS_DIR = "/var/lib/jenkins/workspace/configs"
-    }
-  
-  stages {
-  	stage('Build Frontend') {
-  		steps {
-  			dir(path: "${env.FRONTEND_DIR}") {
-  				sh 'yarn build'
-  			}
-  		}
-  	}
-  	
-  	stage('Copy Configs to Resources') {
-  		steps {
-  			dir(path: "${env.BACKEND_DIR}") {
-  				sh "cp -r ${env.CONFIGS_DIR}/* ${env.BACKEND_DIR}/src/main/resources"
-  			}
-  		}
-  	}
-  }	
+	
+	stages {
+		stage('Build') {
+			steps {
+				sh """
+					cd ${env.FRONTEND_DIR}
+					sudo yarn build
+				"""
+			}
+		}
+	}
 }
