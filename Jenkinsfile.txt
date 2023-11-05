@@ -13,9 +13,10 @@ pipeline {
     
         stage('Build') {
             steps {
-                sh """
-                	id
-                """
+            		sh """
+            			cd ${CONFIG_DIR}
+            			ls -l
+            		"""
             }
         }
         
