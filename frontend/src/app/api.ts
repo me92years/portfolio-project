@@ -4,7 +4,7 @@ import { PostReqDto, PostResDto, UserPrincipal } from './types'
 const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
+    baseUrl: 'http://portfolio1.store/api',
     prepareHeaders: (headers) => {
       headers.set('Content-Type', 'application/json')
     }
