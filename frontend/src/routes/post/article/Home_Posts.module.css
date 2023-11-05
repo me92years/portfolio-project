@@ -34,6 +34,10 @@ tbody .tr:hover {
   justify-items: center;
 }
 
+.tr td {
+  user-select: none;
+}
+
 .th {
   width: 100%;
   background: lightblue;
