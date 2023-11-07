@@ -48,13 +48,11 @@ const Detail = ({ userPrincipal }: { userPrincipal: UserPrincipal }) => {
   }
 
   const setup = async () => {
-    const response = await getPost({ pid: Number(pid) });
-    if (!response.isLoading) {
-      if (response.status === "fulfilled") {
-        const dto = response.data.dtoList[0] as PostGetDto;
-        setPost(dto);
-        setComments(dto.comments);
-      }
+    const data = await getPost({ pid: Number(pid) }).unwrap();
+    if (data) {
+      const dto = data.dtoList[0] as PostGetDto;
+      setPost(dto);
+      setComments(dto.comments);
     }
   };
 
