@@ -28,7 +28,9 @@ public class PostSupportRepositoryImpl extends QuerydslRepositorySupport
         .select(post)
         .groupBy(post)
         .offset(pageable.getOffset())
-        .limit(pageable.getPageSize());
+        .limit(pageable.getPageSize())
+        .orderBy(post.pid.desc())
+        ;
 
     BooleanBuilder booleanBuilder = new BooleanBuilder(post.pid.gt(0L));
     if (pid > 0L) {
@@ -50,7 +52,6 @@ public class PostSupportRepositoryImpl extends QuerydslRepositorySupport
       }
       booleanBuilder.and(conditionBuilder);
     }
-
     query.where(booleanBuilder);
     List<Post> result = query.fetch();
     long fetchCount = query.fetchCount();
