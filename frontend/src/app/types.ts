@@ -5,6 +5,7 @@ export type PostReqDto = {
   pid?: number;
   category?: string;
   keyword?: string;
+  page?: number;
 }
 
 // 게시물 추가
@@ -40,17 +41,19 @@ export type PostGetDto = {
 }
 
 // 페이지
-export type PostResDto = {
-  dtoList: PostGetDto[];
-  totalPages: number;
-  page: number;
-  size: number;
-  start: number;
-  end: number;
-  prev: boolean;
-  next: boolean;
-  pageList: number[]
-};
+export type PostResDto =
+  | null
+  | {
+    dtoList: PostGetDto[];
+    totalPages: number;
+    page: number;
+    size: number;
+    start: number;
+    end: number;
+    prev: boolean;
+    next: boolean;
+    pageList: number[]
+  };
 
 
 // 인증 회원

@@ -100,3 +100,24 @@ tbody .tr:hover {
   width: 100%;
   padding: 0.3rem;
 }
+
+.pagingUl {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+  list-style-type: none;
+}
+
+.pagingLi {
+  cursor: pointer;
+}
+
+.pagingLi:hover {
+  scale: 1.1;
+  font-weight: 800;
+}
+
+.currentPage {
+  color: royalblue;
+  font-weight: 800;
+}

@@ -24,7 +24,7 @@ function App() {
   return (
     <Routes>
       <Route
-        path='/'
+        path={'/'}
         element={(
           <>
             <Header
@@ -37,7 +37,7 @@ function App() {
       >
         <Route
           index={true}
-          element={<Home 
+          element={<Home
             userPrincipal={userPrincipal}
           />}
         />
